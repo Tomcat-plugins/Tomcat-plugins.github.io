@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>V2ray怎么翻墙</title>
+    <title>AAAAA</title>
     <url>/2021/11/07/V2ray/</url>
-    <content><![CDATA[<p>1.首先我们下载下边这个软件V2rayN,Github搜V2rayN然后进入仓库后直接下载软件就行或者<a href="https://wwa.lanzoui.com/iePYWw9g9yf">点击我下载</a></p>
+    <content><![CDATA[<!-- 1.首先我们下载下边这个软件V2rayN,Github搜V2rayN然后进入仓库后直接下载软件就行或者[点击我下载](https://wwa.lanzoui.com/iePYWw9g9yf) -->
 <span id="more"></span>
-<p><img data-src="/images/V2ray/img/1.jpg" alt="1"></p>
-<p>2.然后复制 <a href="https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1106.txt">https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1106.txt</a> 这个网站的内容</p>
-<p><img data-src="/images/V2ray/img/2.png" alt="2"></p>
-<p>点击这里粘贴导入节点，选择测试服务器ping看看测试结果，如果测试结果，如果测试结果是Timeout可能节点不行了，选择没有Timeout的节点按下回车</p>
-<p><img data-src="/images/V2ray/img/3.png" alt="3"></p>
-<p>然后选择<img data-src="/images/V2ray/img/4.png" alt="4">系统代理的自动配置系统代理选项，然后就可以访问了<img data-src="/images/V2ray/img/5.png" alt="5"></p>
+<!-- ![1](/images/V2ray/img/1.jpg) -->
+
+<!-- 2.然后复制 https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1106.txt 这个网站的内容
+
+![2](/images/V2ray/img/2.png)
+
+点击这里粘贴导入节点，选择测试服务器ping看看测试结果，如果测试结果，如果测试结果是Timeout可能节点不行了，选择没有Timeout的节点按下回车
+
+![3](/images/V2ray/img/3.png)
+
+然后选择![4](/images/V2ray/img/4.png)系统代理的自动配置系统代理选项，然后就可以访问了![5](/images/V2ray/img/5.png) -->
 ]]></content>
-      <tags>
-        <tag>V2ray</tag>
-      </tags>
   </entry>
 </search>
