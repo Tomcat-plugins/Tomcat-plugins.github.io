@@ -29,7 +29,7 @@
 <meta property="og:description" content="2014年3月18日，Oracle终于发布Java8正式版。在新的版本里面加入了很多特性， 总共增加了55个新特性，其中最最吸引人的就是Lambdas表达式和Stream函数式编程，本文详细讲解这两个特性。 其他特性比如日期API，泛型，反射，注解，集合框架，并发，Nashorn引擎等等这里暂时就不详细介绍了。 具体可以参考：http:&#x2F;&#x2F;openjdk.java.net&#x2F;projects&#x2F;jdk">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-07T06:45:08.000Z">
-<meta property="article:modified_time" content="2021-11-07T08:17:22.754Z">
+<meta property="article:modified_time" content="2021-11-07T10:25:55.581Z">
 <meta property="article:author" content="陈北玄">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -133,7 +133,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -146,6 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E6%BC%94%E5%8F%98%EF%BC%9A"><span class="nav-text">Java并发编程演变：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-text">优点</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -196,7 +197,7 @@
     <span>0%</span>
   </div>
 
-  <a href="https://github.com/yourname" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+  <a href="https://github.com/Tomcat-plugins" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -239,7 +240,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-11-07 14:45:08 / 修改时间：16:17:22" itemprop="dateCreated datePublished" datetime="2021-11-07T14:45:08+08:00">2021-11-07</time>
+      <time title="创建时间：2021-11-07 14:45:08 / 修改时间：18:25:55" itemprop="dateCreated datePublished" datetime="2021-11-07T14:45:08+08:00">2021-11-07</time>
     </span>
 
   
@@ -256,11 +257,10 @@
 <p>其他特性比如日期API，泛型，反射，注解，集合框架，并发，Nashorn引擎等等这里暂时就不详细介绍了。 具体可以参考：<a target="_blank" rel="noopener" href="http://openjdk.java.net/projects/jdk8/features">http://openjdk.java.net/projects/jdk8/features</a></p>
 <span id="more"></span>
 <p>昨天参加了Oracle的Java8宣讲活动，有幸目睹了Simon Ritter的风采，写个总结来分享下。</p>
-<p>Java并发编程演变：<br>版本    发布年份    并发技术<br>1.4    2002    java.lang.Thread<br>5    2004    java.util.concurrent(jsr166)<br>6    2006    Phasers, etc(jsr166)<br>7    2011    Fork/Join Framework(jsr166y)<br>8    2014    Project Lambda<br>先来一个小例子见识下Java8的威力！</p>
+<h1 id="Java并发编程演变："><a href="#Java并发编程演变：" class="headerlink" title="Java并发编程演变："></a>Java并发编程演变：</h1><p>版本    发布年份    并发技术<br>1.4    2002    java.lang.Thread<br>5    2004    java.util.concurrent(jsr166)<br>6    2006    Phasers, etc(jsr166)<br>7    2011    Fork/Join Framework(jsr166y)<br>8    2014    Project Lambda<br>先来一个小例子见识下Java8的威力！</p>
 <p>传统的外部迭代处理代码<br>List<Student> students = …<br>double highestScore = 0.0;<br>for (Student s : students) {<br>    if (s.gradYear == 2011) {<br>        if (s.score &gt; highestScore) {<br>            highestScore = s.score;<br>        }<br>    }<br>}<br>传统的外部迭代主要问题：</p>
-<p>程序员自己控制迭代，容易出问题！<br>顺序执行：迭代从开始到结束一个一个的顺序迭代元素<br>线程不安全，由于业务逻辑依靠可修改变量，容易产生竞态问题<br>基于Inner Classes的内部迭代<br>List<Student> students = …<br>double highestScore = students.<br>        filter(new Predicate<Student>() {<br>            public boolean op(Student s) {<br>                return s.getGradYear() == 2011;<br>            }<br>        }).<br>        map(new Mapper&lt;Student,Double&gt;() {<br>            public Double extract(Student s) {<br>                return s.getScore();<br>            }<br>        }).<br>        max();<br>这种迭代形式已经具备了函数式特征。</p>
-<p>优点：</p>
-<p>迭代，过滤和累加器由核心库完成<br>遍历操作可以并行执行<br>遍历可以延迟执行<br>线程安全 – 因为客户端的逻辑是无状态的<br>缺点：</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>程序员自己控制迭代，容易出问题！<br>顺序执行：迭代从开始到结束一个一个的顺序迭代元素<br>线程不安全，由于业务逻辑依靠可修改变量，容易产生竞态问题<br>基于Inner Classes的内部迭代<br>List<Student> students = …<br>double highestScore = students.<br>        filter(new Predicate<Student>() {<br>            public boolean op(Student s) {<br>                return s.getGradYear() == 2011;<br>            }<br>        }).<br>        map(new Mapper&lt;Student,Double&gt;() {<br>            public Double extract(Student s) {<br>                return s.getScore();<br>            }<br>        }).<br>        max();<br>这种迭代形式已经具备了函数式特征。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>迭代，过滤和累加器由核心库完成<br>遍历操作可以并行执行<br>遍历可以延迟执行<br>线程安全 – 因为客户端的逻辑是无状态的<br>缺点：</p>
 <p>代码写的有点难看</p>
 <p>基于Lambdas的内部迭代<br>SomeList<Student> students = …<br>double highestScore = students.<br>        filter(Student s -&gt; s.getGradYear() == 2011).<br>        map(Student s -&gt; s.getScore()).<br>        max();<br>这种写法可以算是完美了：^_^</p>
 <p>可读性很好<br>更加抽象化<br>简单化后，自然就不容易出现bug了<br>不再依赖可变变量<br>很容易实现并行化<br>进入正题 ~~</p>

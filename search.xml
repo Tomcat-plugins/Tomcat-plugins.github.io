@@ -18,11 +18,10 @@
 <p>其他特性比如日期API，泛型，反射，注解，集合框架，并发，Nashorn引擎等等这里暂时就不详细介绍了。 具体可以参考：<a href="http://openjdk.java.net/projects/jdk8/features">http://openjdk.java.net/projects/jdk8/features</a></p>
 <span id="more"></span>
 <p>昨天参加了Oracle的Java8宣讲活动，有幸目睹了Simon Ritter的风采，写个总结来分享下。</p>
-<p>Java并发编程演变：<br>版本    发布年份    并发技术<br>1.4    2002    java.lang.Thread<br>5    2004    java.util.concurrent(jsr166)<br>6    2006    Phasers, etc(jsr166)<br>7    2011    Fork/Join Framework(jsr166y)<br>8    2014    Project Lambda<br>先来一个小例子见识下Java8的威力！</p>
+<h1 id="Java并发编程演变："><a href="#Java并发编程演变：" class="headerlink" title="Java并发编程演变："></a>Java并发编程演变：</h1><p>版本    发布年份    并发技术<br>1.4    2002    java.lang.Thread<br>5    2004    java.util.concurrent(jsr166)<br>6    2006    Phasers, etc(jsr166)<br>7    2011    Fork/Join Framework(jsr166y)<br>8    2014    Project Lambda<br>先来一个小例子见识下Java8的威力！</p>
 <p>传统的外部迭代处理代码<br>List<Student> students = …<br>double highestScore = 0.0;<br>for (Student s : students) {<br>    if (s.gradYear == 2011) {<br>        if (s.score &gt; highestScore) {<br>            highestScore = s.score;<br>        }<br>    }<br>}<br>传统的外部迭代主要问题：</p>
-<p>程序员自己控制迭代，容易出问题！<br>顺序执行：迭代从开始到结束一个一个的顺序迭代元素<br>线程不安全，由于业务逻辑依靠可修改变量，容易产生竞态问题<br>基于Inner Classes的内部迭代<br>List<Student> students = …<br>double highestScore = students.<br>        filter(new Predicate<Student>() {<br>            public boolean op(Student s) {<br>                return s.getGradYear() == 2011;<br>            }<br>        }).<br>        map(new Mapper&lt;Student,Double&gt;() {<br>            public Double extract(Student s) {<br>                return s.getScore();<br>            }<br>        }).<br>        max();<br>这种迭代形式已经具备了函数式特征。</p>
-<p>优点：</p>
-<p>迭代，过滤和累加器由核心库完成<br>遍历操作可以并行执行<br>遍历可以延迟执行<br>线程安全 – 因为客户端的逻辑是无状态的<br>缺点：</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>程序员自己控制迭代，容易出问题！<br>顺序执行：迭代从开始到结束一个一个的顺序迭代元素<br>线程不安全，由于业务逻辑依靠可修改变量，容易产生竞态问题<br>基于Inner Classes的内部迭代<br>List<Student> students = …<br>double highestScore = students.<br>        filter(new Predicate<Student>() {<br>            public boolean op(Student s) {<br>                return s.getGradYear() == 2011;<br>            }<br>        }).<br>        map(new Mapper&lt;Student,Double&gt;() {<br>            public Double extract(Student s) {<br>                return s.getScore();<br>            }<br>        }).<br>        max();<br>这种迭代形式已经具备了函数式特征。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>迭代，过滤和累加器由核心库完成<br>遍历操作可以并行执行<br>遍历可以延迟执行<br>线程安全 – 因为客户端的逻辑是无状态的<br>缺点：</p>
 <p>代码写的有点难看</p>
 <p>基于Lambdas的内部迭代<br>SomeList<Student> students = …<br>double highestScore = students.<br>        filter(Student s -&gt; s.getGradYear() == 2011).<br>        map(Student s -&gt; s.getScore()).<br>        max();<br>这种写法可以算是完美了：^_^</p>
 <p>可读性很好<br>更加抽象化<br>简单化后，自然就不容易出现bug了<br>不再依赖可变变量<br>很容易实现并行化<br>进入正题 ~~</p>
