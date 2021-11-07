@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Python</title>
-    <url>/2021/11/07/Python/</url>
-    <content><![CDATA[<p>Python3.9在2020年10月5号正式发布，官网release说明地址为<a href="https://www.python.org/downloads/release/python-390/">https://www.python.org/downloads/release/python-390/</a></p>
-<p>从这个版本开始，官方默认提供的Windows安装版本为64位的，<span id="more"></span>同时不再支持Win7系统。所以童鞋们想用新版本的，就赶紧升级到Win10吧。</p>
-<p><img data-src="https://xnstatic-1253397658.file.myqcloud.com/python390.png" alt="Python3.9"></p>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java8中的lambda表达式</title>
     <url>/2021/11/07/Java/</url>
     <content><![CDATA[<p>2014年3月18日，Oracle终于发布Java8正式版。在新的版本里面加入了很多特性， 总共增加了55个新特性，其中最最吸引人的就是Lambdas表达式和Stream函数式编程，本文详细讲解这两个特性。</p>
@@ -109,6 +98,33 @@
 ]]></content>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python</title>
+    <url>/2021/11/07/Python/</url>
+    <content><![CDATA[<p>Python3.9在2020年10月5号正式发布，官网release说明地址为<a href="https://www.python.org/downloads/release/python-390/">https://www.python.org/downloads/release/python-390/</a></p>
+<p>从这个版本开始，官方默认提供的Windows安装版本为64位的，<span id="more"></span>同时不再支持Win7系统。所以童鞋们想用新版本的，就赶紧升级到Win10吧。</p>
+<p><img data-src="https://xnstatic-1253397658.file.myqcloud.com/python390.png" alt="Python3.9"></p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>V2ray怎么翻墙</title>
+    <url>/2021/11/07/V2ray/</url>
+    <content><![CDATA[<p>1.首先我们下载下边这个软件V2rayN,Github搜V2rayN然后进入仓库后直接下载软件就行或者<a href="/images/V2ray/file/v2rayN-Core.rar">点击我下载</a></p>
+<span id="more"></span>
+<p><img data-src="/images/V2ray/img/1.jpg" alt="1"></p>
+<p>2.然后复制 <a href="https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1106.txt">https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1106.txt</a> 这个网站的内容</p>
+<p><img data-src="/images/V2ray/img/2.png" alt="2"></p>
+<p>点击这里粘贴导入节点，选择测试服务器ping看看测试结果，如果测试结果，如果测试结果是Timeout可能节点不行了，选择没有Timeout的节点按下回车</p>
+<p><img data-src="/images/V2ray/img/3.png" alt="3"></p>
+<p>然后选择<img data-src="/images/V2ray/img/4.png" alt="4">系统代理的自动配置系统代理选项，然后就可以访问了<img data-src="/images/V2ray/img/5.png" alt="5"></p>
+]]></content>
+      <tags>
+        <tag>V2ray</tag>
       </tags>
   </entry>
 </search>
